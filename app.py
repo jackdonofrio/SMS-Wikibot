@@ -5,6 +5,11 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
 
+@app.route('/')
+def default():
+    return "Default" # I added this so that the Heroku Awake Github Action could keep the app awake
+                     # without constantly getting 405 errors from trying to access /bot which only accepts POST
+
 # Todo: break each if statement into a separate function for each command
 @app.route('/bot',methods=['POST'])
 def wikibot():
